@@ -18,6 +18,15 @@ class PuzzlePiece:
         return self.__connections[3]
 
     def get_pretty(self) -> list[list[str]]:
+        """
+        Returns puzzle piece as a 4x4 2d list of characters. Example:
+             00
+            0  0
+            0  1
+             02
+        This represents the connectors on each side of the puzzle. By convention, we use 00 for edge pieces, but it
+        shouldn't really matter.
+        """
         # pretty string
         ps = [[' ' for _ in range(4)] for _ in range(4)]
 
