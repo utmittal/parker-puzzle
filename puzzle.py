@@ -259,11 +259,3 @@ class Puzzle:
 
         for row in debug_print:
             print(''.join(row))
-
-# p = Puzzle(2, 2)
-# p.set_piece(0, 0, PuzzlePiece(0, 1, 4, 0))
-# p.set_piece(0, 1, PuzzlePiece(0, 0, 2, 1))
-# p.set_piece(1, 1, PuzzlePiece(2, 0, 0, 3))
-# p.set_piece(1, 0, PuzzlePiece(4, 3, 0, 0))
-#
-# p._debug_print()

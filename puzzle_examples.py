@@ -13,4 +13,3 @@ matt_puzzle = Puzzle(5, 5,
                          [PuzzlePiece(4, 7, 0, 0), PuzzlePiece(3, 7, 0, 7), PuzzlePiece(2, 6, 0, 7),
                           PuzzlePiece(4, 1, 0, 6), PuzzlePiece(7, 0, 0, 1)]
                      ])
-# matt_puzzle.verify_puzzle()

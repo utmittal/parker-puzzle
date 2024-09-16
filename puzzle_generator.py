@@ -52,9 +52,3 @@ def generate_all_puzzles(rows: int, cols: int) -> list[Puzzle]:
             # print(f"Rotated Combos: {len(rotated_combos)}")
 
     return puzzle_combos
-
-# start = time.time()
-# genned_peas = generate_all_puzzles(2, 2)
-# print(len(genned_peas))
-# end = time.time()
-# print(end - start)
