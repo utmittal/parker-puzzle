@@ -4,34 +4,18 @@ from puzzle import Puzzle
 
 
 def generate_permutations(elements: list, n: int):
-    """Generates permutations of size n from the given elements.
-
-    Args:
-        elements: A list of elements.
-        n: The desired permutation size.
-
-    Yields:
-        A generator of permutations.
-    """
-    perm_list = []
-
     def helper(perm: list, remaining_size: int, missing_elements: set):
         if remaining_size < len(missing_elements):
             return None
 
         if remaining_size == 0:
-            print(perm)
-            return perm
+            yield perm
 
         for elem in elements:
             new_miss = missing_elements - {elem}
-            res = helper(perm + [elem], remaining_size - 1, new_miss)
-            if res is not None:
-                perm_list.append(res)
+            yield from helper(perm + [elem], remaining_size - 1, new_miss)
 
-    helper([], n, set(elements))
-
-    return perm_list
+    yield from helper([], n, set(elements))
 
 
 def generate_puzzles_n_connectors(rows: int, cols: int, connectors: int) -> list[Puzzle]:
@@ -48,7 +32,8 @@ def generate_puzzles_n_connectors(rows: int, cols: int, connectors: int) -> list
         raise ValueError(f"Number of connectors must be greater than 0.")
 
     connectors_list = list(range(1, connectors + 1))
-    connector_permutations = generate_permutations(connectors_list, max_connectors)
+    for connector_perm in generate_permutations(connectors_list, max_connectors):
+        print(connector_perm)
 
 
 for i in range(1, 41):

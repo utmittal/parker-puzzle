@@ -36,25 +36,20 @@ def generate_permutations(elements: list, n: int):
     Yields:
         A generator of permutations.
     """
-    perm_list = []
 
     def helper(perm: list, remaining_size: int, missing_elements: set):
         if remaining_size < len(missing_elements):
             return None
 
         if remaining_size == 0:
-            return perm
+            yield perm
 
         for elem in elements:
             new_miss = missing_elements - {elem}
-            res = helper(perm + [elem], remaining_size - 1, new_miss)
-            if res is not None:
-                perm_list.append(res)
+            yield from helper(perm + [elem], remaining_size - 1, new_miss)
 
-    helper([], n, set(elements))
-
-    return perm_list
+    yield from helper([], n, set(elements))
 
 
-for p in generate_permutations([1, 2], 4):
+for p in generate_permutations([1, 2, 3, 4], 4):
     print(p)
