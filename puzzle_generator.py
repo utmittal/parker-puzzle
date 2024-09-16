@@ -1,10 +1,62 @@
-import time
-from itertools import product
+from itertools import product, combinations_with_replacement, combinations, permutations
 
 from puzzle import Puzzle
 
 
-def generate_all_puzzles(rows: int, cols: int) -> list[Puzzle]:
+def generate_permutations(elements: list, n: int):
+    """Generates permutations of size n from the given elements.
+
+    Args:
+        elements: A list of elements.
+        n: The desired permutation size.
+
+    Yields:
+        A generator of permutations.
+    """
+    perm_list = []
+
+    def helper(perm: list, remaining_size: int, missing_elements: set):
+        if remaining_size < len(missing_elements):
+            return None
+
+        if remaining_size == 0:
+            print(perm)
+            return perm
+
+        for elem in elements:
+            new_miss = missing_elements - {elem}
+            res = helper(perm + [elem], remaining_size - 1, new_miss)
+            if res is not None:
+                perm_list.append(res)
+
+    helper([], n, set(elements))
+
+    return perm_list
+
+
+def generate_puzzles_n_connectors(rows: int, cols: int, connectors: int) -> list[Puzzle]:
+    """
+    Generate all puzzles of the given dimensions where each puzzle will have the provided number of connectors in a
+    unique layout (i.e. not rotationally symmetric).
+    """
+    max_connectors = ((rows - 1) * cols) + ((cols - 1) * rows)
+    if connectors > max_connectors:
+        raise ValueError(
+            f"Puzzle cannot have {connectors} different connectors. For a puzzle of dimensions {rows}x{cols}, "
+            f"the maximum number of unique connectors is {max_connectors}.")
+    elif connectors <= 0:
+        raise ValueError(f"Number of connectors must be greater than 0.")
+
+    connectors_list = list(range(1, connectors + 1))
+    connector_permutations = generate_permutations(connectors_list, max_connectors)
+
+
+for i in range(1, 41):
+    generate_puzzles_n_connectors(5, 5, i)
+    print(f"!! {i}")
+
+
+def generate_puzzles_all(rows: int, cols: int) -> list[Puzzle]:
     """
     Generate all puzzles of the given dimensions where each puzzle will have a unique set of connector layouts.
     """
