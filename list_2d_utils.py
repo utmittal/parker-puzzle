@@ -25,8 +25,7 @@ def rotate_180(list_2d: [list[list]]) -> list[list]:
     """
     return list(reversed([list(reversed(i)) for i in list_2d]))
 
-
 # Example usage
-matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-print(rotate_clockwise(matrix))
-print(rotate_180(matrix))
+# matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+# print(rotate_clockwise(matrix))
+# print(rotate_180(matrix))
