@@ -36,11 +36,6 @@ def generate_puzzles_n_connectors(rows: int, cols: int, connectors: int) -> list
         print(connector_perm)
 
 
-for i in range(1, 41):
-    generate_puzzles_n_connectors(5, 5, i)
-    print(f"!! {i}")
-
-
 def generate_puzzles_all(rows: int, cols: int) -> list[Puzzle]:
     """
     Generate all puzzles of the given dimensions where each puzzle will have a unique set of connector layouts.
