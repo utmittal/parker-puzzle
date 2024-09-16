@@ -48,14 +48,13 @@ def generate_all_puzzles(rows: int, cols: int) -> list[Puzzle]:
             #     print("------------------------")
 
             puzzle_combos.append(new_puzzle)
-            print(f"Puzzle Combos: {len(puzzle_combos)}")
-            print(f"Rotated Combos: {len(rotated_combos)}")
+            # print(f"Puzzle Combos: {len(puzzle_combos)}")
+            # print(f"Rotated Combos: {len(rotated_combos)}")
 
     return puzzle_combos
 
-
-start = time.time()
-genned_peas = generate_all_puzzles(2, 2)
-print(len(genned_peas))
-end = time.time()
-print(end - start)
+# start = time.time()
+# genned_peas = generate_all_puzzles(2, 2)
+# print(len(genned_peas))
+# end = time.time()
+# print(end - start)

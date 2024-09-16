@@ -145,28 +145,32 @@ class Puzzle:
             for col in range(self.__cols):
                 if row == 0:
                     if self.__pieces[row][col].up != 0:
-                        raise PuzzleError(f"Piece {row}{col} {self.__pieces[row][col]} should have UP connector = 0.")
+                        raise PuzzleError(f"Piece {row},{col} {self.__pieces[row][col]} should have UP connector = 0.")
                 elif row == self.__rows - 1:
                     if self.__pieces[row][col].down != 0:
-                        raise PuzzleError(f"Piece {row}{col} {self.__pieces[row][col]} should have DOWN connector = 0.")
+                        raise PuzzleError(
+                            f"Piece {row},{col} {self.__pieces[row][col]} should have DOWN connector = 0.")
                 else:
                     if self.__pieces[row][col].down != self.__pieces[row + 1][col].up:
                         raise PuzzleError(
-                            f"DOWN connector of Piece {row}{col} {self.__pieces[row][col]} should be equal to UP "
-                            f"Piece {row + 1}{col} {self.__pieces[row + 1][col]}")
+                            f"DOWN connector of Piece {row},{col} {self.__pieces[row][col]} should be equal to UP "
+                            f"connector of "
+                            f"Piece {row + 1},{col} {self.__pieces[row + 1][col]}")
 
                 if col == 0:
                     if self.__pieces[row][col].left != 0:
-                        raise PuzzleError(f"Piece {row}{col} {self.__pieces[row][col]} should have LEFT connector = 0.")
+                        raise PuzzleError(
+                            f"Piece {row},{col} {self.__pieces[row][col]} should have LEFT connector = 0.")
                 elif col == self.__cols - 1:
                     if self.__pieces[row][col].right != 0:
                         raise PuzzleError(
-                            f"Piece {row}{col} {self.__pieces[row][col]} should have RIGHT connector = 0.")
+                            f"Piece {row},{col} {self.__pieces[row][col]} should have RIGHT connector = 0.")
                 else:
                     if self.__pieces[row][col].right != self.__pieces[row][col + 1].left:
                         raise PuzzleError(
-                            f"RIGHT connector of Piece {row}{col} {self.__pieces[row][col]} should be equal to LEFT "
-                            f"Piece {row}{col + 1} {self.__pieces[row][col + 1]}")
+                            f"RIGHT connector of Piece {row},{col} {self.__pieces[row][col]} should be equal to LEFT "
+                            f"connector of "
+                            f"Piece {row},{col + 1} {self.__pieces[row][col + 1]}")
 
     def get_all_rotations(self):
         if self.__rows != self.__cols:
