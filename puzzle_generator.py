@@ -10,9 +10,10 @@ def generate_all_puzzles(rows: int, cols: int) -> list[Puzzle]:
     """
     # By convention, we use 0 for edges
     max_unique_connectors = ((rows - 1) * cols) + ((cols - 1) * rows)
+    print(f"Max Unique Connectors: {max_unique_connectors}")
     connectors_list = [_ for _ in range(1, max_unique_connectors + 1)]
     connector_combos = list(product(connectors_list, repeat=max_unique_connectors))
-
+    print(f"Number of connector combos: {len(connector_combos)}")
     # print(connector_combos)
 
     puzzle_combos = []
@@ -47,6 +48,8 @@ def generate_all_puzzles(rows: int, cols: int) -> list[Puzzle]:
             #     print("------------------------")
 
             puzzle_combos.append(new_puzzle)
+            print(f"Puzzle Combos: {len(puzzle_combos)}")
+            print(f"Rotated Combos: {len(rotated_combos)}")
 
     return puzzle_combos
 

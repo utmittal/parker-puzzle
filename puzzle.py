@@ -62,6 +62,9 @@ class PuzzlePiece:
         # more efficient because we don't pay the cost of casting to deque. Plus random access on deque is slower.
         self.__connections = self.__connections[3:] + self.__connections[:3]
 
+    def rotate_180(self):
+        self.__connections = self.__connections[2:] + self.__connections[:2]
+
     def get_pretty(self) -> list[list[str]]:
         """
         Returns puzzle piece as a 4x4 2d list of characters. Example:
@@ -167,9 +170,13 @@ class Puzzle:
 
     def get_all_rotations(self):
         if self.__rows != self.__cols:
-            return [Puzzle(self.__rows, self.__cols, pieces=rotate_180(copy.deepcopy(self.get_pieces())))]
+            rotated_pieces = rotate_180(copy.deepcopy(self.get_pieces()))
+            for pieces_row in rotated_pieces:
+                for piece in pieces_row:
+                    piece.rotate_180()
+            return [copy.deepcopy(self), Puzzle(self.__rows, self.__cols, rotated_pieces)]
 
-        rotated_copies = []
+        rotated_copies = [copy.deepcopy(self)]
         current = self
         for i in range(3):
             rotated_pieces = rotate_clockwise(copy.deepcopy(current.get_pieces()))
